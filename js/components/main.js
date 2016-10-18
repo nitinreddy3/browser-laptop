@@ -909,20 +909,30 @@ class Main extends ImmutableComponent {
               onDragOver={this.onDragOver}
               onDrop={this.onDrop}>
               <div className='backforward'>
-                <LongPressButton
-                  l10nId='backButton'
-                  className='back fa fa-angle-left'
-                  disabled={!activeFrame || !activeFrame.get('canGoBack')}
-                  onClick={this.onBack}
-                  onLongPress={this.onBackLongPress}
-                />
-                <LongPressButton
-                  l10nId='forwardButton'
-                  className='forward fa fa-angle-right'
-                  disabled={!activeFrame || !activeFrame.get('canGoForward')}
-                  onClick={this.onForward}
-                  onLongPress={this.onForwardLongPress}
-                />
+                <div className={cx({
+                  backForwardButtonContainer: true,
+                  disabled: !activeFrame || !activeFrame.get('canGoBack')
+                })}>
+                  <LongPressButton
+                    l10nId='backButton'
+                    className='navigationButton backButton'
+                    disabled={!activeFrame || !activeFrame.get('canGoBack')}
+                    onClick={this.onBack}
+                    onLongPress={this.onBackLongPress}
+                  />
+                </div>
+                <div className={cx({
+                  backForwardButtonContainer: true,
+                  disabled: !activeFrame || !activeFrame.get('canGoForward')
+                })}>
+                  <LongPressButton
+                    l10nId='forwardButton'
+                    className='navigationButton forwardButton'
+                    disabled={!activeFrame || !activeFrame.get('canGoForward')}
+                    onClick={this.onForward}
+                    onLongPress={this.onForwardLongPress}
+                  />
+                </div>
               </div>
               <NavigationBar
                 ref={(node) => { this.navBar = node }}

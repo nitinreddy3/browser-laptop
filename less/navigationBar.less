@@ -440,19 +440,18 @@
   .backforward {
     display: flex;
 
-    .back,
-    .forward {
+    .backButton,
+    .forwardButton {
       width: @navbarButtonWidth;
     }
 
-    .back {
+    .backButton {
       padding-right: @navbarButtonSpacing;
     }
 
-    .forward {
+    .forwardButton {
       padding-left: @navbarButtonSpacing;
     }
-
   }
 
   // Navigation bar at the center
@@ -519,6 +518,78 @@
   }
 }
 
+.navigationButton {
+  background-color: @buttonColor;
+  display: inline-block;
+  width: 12px;
+  height: 15px;
+  margin: 0 6px;
+
+  &:hover {
+    background-color: @gray;
+  }
+}
+
+.backforward {
+  .backForwardButtonContainer {
+    border-radius: @borderRadius;
+    height: 28px;
+
+    &:not(.disabled):hover {
+      background: white;
+    }
+  }
+
+  .backButton,
+  .forwardButton {
+    height: 15px;
+    margin: 7px 0 0 0;
+  }
+
+  .backButton {
+    background: url('../img/toolbar/back_btn.svg') center no-repeat;
+  }
+
+  .forwardButton {
+    background: url('../img/toolbar/forward_btn.svg') center no-repeat;
+  }
+}
+
+#navigator {
+  .stopButton {
+    background: url('../img/toolbar/stoploading_btn.svg') center no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    margin: 0 3px;
+    padding: 0 6px;
+  }
+
+  .reloadButton {
+    background: url('../img/toolbar/reload_btn.svg') center no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    margin: 0 3px;
+    padding: 0 6px;
+  }
+
+  .homeButton {
+    background: url('../img/toolbar/home_btn.svg') center no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+    margin: 0 3px;
+    padding: 0 6px;
+  }
+
+  .bookmarkButton {
+    background: url('../img/toolbar/bookmark_btn.svg') center no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    width: 14px;
+    height: 14px;
+
+    &.removeBookmarkButton {
+      background: url('../img/toolbar/bookmark_marked.svg') center no-repeat;
+    }
+  }
+}
 
 .navigatorWrapper {
   justify-content: space-between;
@@ -548,16 +619,8 @@
       }
 
       &:not([disabled]):hover {
-        color: @buttonColor;
-        opacity: 1.0;
-        background-color: white;
+        opacity: 0.2;
       }
-    }
-
-    .back,
-    .forward {
-      font-size: 28px;
-      text-align: center;
     }
   }
 }
@@ -622,14 +685,15 @@
   }
 
   &:not(.titleMode) {
-    .urlbarForm, .browserButton {
+    .urlbarForm, .browserButton, .bookmarkButtonContainer {
       animation: fadeIn .6s;
       opacity: 0;
       animation-fill-mode: forwards;
     }
 
-    .bookmarkButton {
+    .bookmarkButtonContainer {
       border: 1px solid #CBCBCB;
+      border-radius: @borderRadius;
       border-right: none;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -766,11 +830,6 @@
       background: @privateTabBackground;
       color: @chromeText;
     }
-  }
-
-  span.navbutton.removeBookmarkButton {
-    color: @braveOrange;
-    opacity: 1;
   }
 
   .urlbarIcon {

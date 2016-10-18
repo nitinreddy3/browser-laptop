@@ -131,34 +131,32 @@ class NavigationBar extends ImmutableComponent {
           this.titleMode
           ? null
           : this.loading
-            ? <Button iconClass='fa-times'
-              l10nId='stopButton'
-              className='navbutton stop-button'
+            ? <span l10nId='stopButton'
+              className='navigationButton stopButton'
               onClick={this.onStop} />
-            : <Button iconClass='fa-repeat'
-              l10nId='reloadButton'
-              className='navbutton reload-button'
+            : <span l10nId='reloadButton'
+              className='navigationButton reloadButton'
               onClick={this.onReload} />
         }
         {
           !this.titleMode && getSetting(settings.SHOW_HOME_BUTTON)
-          ? <Button iconClass='fa-home'
-            l10nId='homeButton'
-            className='navbutton homeButton'
+          ? <span l10nId='homeButton'
+            className='navigationButton homeButton'
             onClick={this.onHome} />
           : null
         }
         {
           !this.titleMode
-          ? <Button iconClass={this.bookmarked ? 'fa-star' : 'fa-star-o'}
-            className={cx({
-              navbutton: true,
-              bookmarkButton: true,
-              removeBookmarkButton: this.bookmarked,
-              withHomeButton: getSetting(settings.SHOW_HOME_BUTTON)
-            })}
-            l10nId={this.bookmarked ? 'removeBookmarkButton' : 'addBookmarkButton'}
-            onClick={this.onToggleBookmark} />
+          ? <span className='bookmarkButtonContainer'>
+            <span l10nId={this.bookmarked ? 'removeBookmarkButton' : 'addBookmarkButton'}
+              className={cx({
+                navigationButton: true,
+                bookmarkButton: true,
+                removeBookmarkButton: this.bookmarked,
+                withHomeButton: getSetting(settings.SHOW_HOME_BUTTON)
+              })}
+              onClick={this.onToggleBookmark} />
+          </span>
           : null
         }
       </div>
